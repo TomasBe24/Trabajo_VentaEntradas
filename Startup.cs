@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Trabajo_VentaEntradas.BaseDato;
 
 namespace Trabajo_VentaEntradas
 {
@@ -24,6 +27,8 @@ namespace Trabajo_VentaEntradas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\USURIO\Desktop\TpNT\Trabajo_VentaEntradas\BaseDato\DB.db"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
