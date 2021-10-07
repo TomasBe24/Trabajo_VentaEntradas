@@ -8,13 +8,13 @@ namespace Trabajo_VentaEntradas.Models
 {
     public class Show
     {
-        public string fecha { get; set; }
-        public int  horario { get; set; }
+        public int id { get; set; }
+        public DateTime fecha { get; set; }
         public string banda { get; set; }
         public int precioCampo { get; set; }
         public int precioPlatea { get; set; }
-        public ArrayList asientosPlatea { get; set; }
-        public ArrayList asientosCampo { get; set; }
-
+        public int asientosPlatea { get; set; }
+        public int asientosCampo { get; set; }
+        public int idLocalidad { get; set; }
     }
 }

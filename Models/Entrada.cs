@@ -7,11 +7,12 @@ namespace Trabajo_VentaEntradas.Models
 {
     public class Entrada
     {
+        public int id { get; set; }
         public string seccion { get; set; }
         public int precio { get; set; }
         public int asiento { get; set; }
-        public string fecha { get; set; }
-        public int horario { get; set; }
-        public string banda { get; set; }
+        public DateTime fecha { get; set; }
+        public string dniUsuario{ get; set; }
+        public int idShow { get; set; }
     }
 }
