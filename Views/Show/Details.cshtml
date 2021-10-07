@@ -1,0 +1,61 @@
+﻿@model Trabajo_VentaEntradas.Models.Show
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Show</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.banda)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.banda)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.precioCampo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.precioCampo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.precioPlatea)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.precioPlatea)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.asientosPlatea)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.asientosPlatea)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.asientosCampo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.asientosCampo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idLocalidad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idLocalidad)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

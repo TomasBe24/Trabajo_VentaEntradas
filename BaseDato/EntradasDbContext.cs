@@ -16,5 +16,13 @@ namespace Trabajo_VentaEntradas.BaseDato
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+
+        public DbSet<Trabajo_VentaEntradas.Models.Tarjeta> Tarjeta { get; set; }
+
+        public DbSet<Trabajo_VentaEntradas.Models.Localidad> Localidad { get; set; }
+
+        public DbSet<Trabajo_VentaEntradas.Models.Show> Show { get; set; }
+
+        public DbSet<Trabajo_VentaEntradas.Models.Entrada> Entrada { get; set; }
     }
 }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
 
 namespace Trabajo_VentaEntradas.Models
 {
     public class Show
     {
+        [Key]
         public int id { get; set; }
         public DateTime fecha { get; set; }
         public string banda { get; set; }

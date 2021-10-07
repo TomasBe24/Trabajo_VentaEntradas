@@ -1,0 +1,43 @@
+﻿@model Trabajo_VentaEntradas.Models.Tarjeta
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Tarjeta</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vencimiento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vencimiento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.pin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.pin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.titular)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.titular)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dniTitular)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dniTitular)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.numero">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
