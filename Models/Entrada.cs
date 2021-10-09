@@ -15,6 +15,7 @@ namespace Trabajo_VentaEntradas.Models
         public int asiento { get; set; }
         public DateTime fecha { get; set; }
         public string dniUsuario{ get; set; }
+        [Display(Name = "Nombre del show")]
         public int idShow { get; set; }
     }
 }

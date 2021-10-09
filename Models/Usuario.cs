@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Trabajo_VentaEntradas.Models
 {
-    public class Usuario
+    public abstract class Usuario
     {
         [Key]
         public string dni { get; set; }
         public string contrasenia { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-        
+        public abstract Rol Rol { get; }
+
     }
 }

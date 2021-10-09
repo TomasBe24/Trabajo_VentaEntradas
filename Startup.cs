@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Trabajo_VentaEntradas.BaseDato;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Trabajo_VentaEntradas
 {
@@ -27,6 +28,7 @@ namespace Trabajo_VentaEntradas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(ConfigurarcionCookie);
             services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\USURIO\Desktop\TpNT\Trabajo_VentaEntradas\BaseDato\DB.db"));
             //services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\marti\OneDrive\Escritorio\ORT\1° 2°\PNT\Trabajo_VentaEntradas\BaseDato\DB.db"));
             //services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\tomas\Desktop\Trabajo_VentaEntradas\BaseDato\DB.db"));
@@ -50,6 +52,8 @@ namespace Trabajo_VentaEntradas
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -58,6 +62,16 @@ namespace Trabajo_VentaEntradas
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseCookiePolicy();
         }
+
+        public static void ConfigurarcionCookie(CookieAuthenticationOptions opciones)
+        {
+            opciones.LoginPath = "/Login/Login";
+            opciones.AccessDeniedPath = "/Login/NoAutorizado";
+            opciones.LogoutPath = "/Login/Logout";
+            opciones.ExpireTimeSpan = System.TimeSpan.FromMinutes(1);
+        }
+
     }
 }

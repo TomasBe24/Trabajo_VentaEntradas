@@ -16,6 +16,8 @@ namespace Trabajo_VentaEntradas.BaseDato
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Administrador> Administrador { get; set; }
 
         public DbSet<Trabajo_VentaEntradas.Models.Tarjeta> Tarjeta { get; set; }
 
