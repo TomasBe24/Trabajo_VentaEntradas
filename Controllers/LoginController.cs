@@ -81,7 +81,7 @@ namespace Trabajo_VentaEntradas.Controllers
 
                     if (rol == Rol.Cliente)
                     {
-                        return RedirectToAction(nameof(UsuarioController.Index), "Usuario");
+                        return RedirectToAction(nameof(ClienteController.Index), "Cliente");
                     }
                     else
                     {

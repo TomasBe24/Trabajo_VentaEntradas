@@ -11,23 +11,23 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
-    [Authorize(Roles = "Administrador, Cliente")]
-    public class UsuarioController : Controller
+    [Authorize(Roles = "Administrador")]
+    public class ClienteController : Controller
     {
         private readonly EntradasDbContext _context;
 
-        public UsuarioController(EntradasDbContext context)
+        public ClienteController(EntradasDbContext context)
         {
             _context = context;
         }
 
-        // GET: Usuario
+        // GET: Cliente
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuario.ToListAsync());
+            return View(await _context.Cliente.ToListAsync());
         }
 
-        // GET: Usuario/Details/5
+        // GET: Cliente/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -35,39 +35,39 @@ namespace Trabajo_VentaEntradas.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
+            var cliente = await _context.Cliente
                 .FirstOrDefaultAsync(m => m.dni == id);
-            if (usuario == null)
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(cliente);
         }
 
-        // GET: Usuario/Create
+        // GET: Cliente/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Usuario/Create
+        // POST: Cliente/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("dni,contrasenia,nombre,apellido")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("dni,contrasenia,nombre,apellido")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(usuario);
+                _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(cliente);
         }
 
-        // GET: Usuario/Edit/5
+        // GET: Cliente/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -75,22 +75,22 @@ namespace Trabajo_VentaEntradas.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente == null)
             {
                 return NotFound();
             }
-            return View(usuario);
+            return View(cliente);
         }
 
-        // POST: Usuario/Edit/5
+        // POST: Cliente/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("dni,contrasenia,nombre,apellido")] Usuario usuario)
+        public async Task<IActionResult> Edit(string id, [Bind("dni,contrasenia,nombre,apellido")] Cliente cliente)
         {
-            if (id != usuario.dni)
+            if (id != cliente.dni)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace Trabajo_VentaEntradas.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
+                    _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UsuarioExists(usuario.dni))
+                    if (!ClienteExists(cliente.dni))
                     {
                         return NotFound();
                     }
@@ -115,10 +115,10 @@ namespace Trabajo_VentaEntradas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(usuario);
+            return View(cliente);
         }
 
-        // GET: Usuario/Delete/5
+        // GET: Cliente/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -126,30 +126,30 @@ namespace Trabajo_VentaEntradas.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
+            var cliente = await _context.Cliente
                 .FirstOrDefaultAsync(m => m.dni == id);
-            if (usuario == null)
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(usuario);
+            return View(cliente);
         }
 
-        // POST: Usuario/Delete/5
+        // POST: Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
+            var cliente = await _context.Cliente.FindAsync(id);
+            _context.Cliente.Remove(cliente);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(string id)
+        private bool ClienteExists(string id)
         {
-            return _context.Usuario.Any(e => e.dni == id);
+            return _context.Cliente.Any(e => e.dni == id);
         }
     }
 }
