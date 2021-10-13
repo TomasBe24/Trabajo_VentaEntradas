@@ -1,0 +1,33 @@
+﻿@model Trabajo_VentaEntradas.Models.Usuario
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Home</h1>
+
+<h2>Buenas Tardes</h2>
+
+@{ if (ViewBag.listaEntradas.Length == 0)
+    {
+        <h3>No tenes entradas, <a href="~/Show/Index">Compra</a> </h3>
+    }
+    else
+    {
+        @foreach (var item in ViewBag.listaEntradas)
+        {
+<td>
+    <h2>@item.fecha</h2>
+
+    <h2>@item.dniUsuario</h2>
+    <h2>@item.seccion</h2>
+    <h2>@item.precio</h2>
+    <h2>@item.asiento</h2>
+</td>
+        }
+    }
+}
+
+
+@*<a asp-action="Edit" asp-route-id="@Model.dni">Edit</a>*@

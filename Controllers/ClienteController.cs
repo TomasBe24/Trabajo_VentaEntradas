@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Cliente")]
     public class ClienteController : Controller
     {
         private readonly EntradasDbContext _context;
@@ -151,5 +152,14 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             return _context.Cliente.Any(e => e.dni == id);
         }
+
+        public IActionResult Home()
+        {
+            
+            string dni = (User.FindFirstValue(ClaimTypes.NameIdentifier));
+            ViewBag.listaEntradas = _context.Entrada.Where(m => m.dniUsuario == dni).ToArray();
+            return View();
+        }
+
     }
 }
