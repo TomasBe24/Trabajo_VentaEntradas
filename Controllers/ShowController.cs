@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -149,5 +150,15 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             return _context.Show.Any(e => e.id == id);
         }
+
+        public IActionResult Comprar()
+        {
+            ViewBag.listaShows = _context.Show.Where(m => m.asientosCampo > 0 || m.asientosPlatea > 0).ToArray();
+            
+            ViewBag.listaLocalidades = _context.Localidad.ToArray();
+
+            return View();
+        }
+
     }
 }

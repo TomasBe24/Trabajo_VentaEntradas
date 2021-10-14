@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Trabajo_VentaEntradas.Models.Show>
+
+
+@{
+    ViewData["Title"] = "Shows disponibles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Shows</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.banda)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.asientosPlatea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.asientosCampo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idLocalidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.listaShows)
+        {
+            <tr>
+                <td>
+                    @item.fecha
+                </td>
+                <td>
+                    @item.banda
+                </td>
+                <td>
+                    @{ if (item.asientosPlatea > 0)
+                        {
+                            <input type="button" name="name" value=" $@item.precioPlatea" />
+                        }
+                        else
+                            {
+                            <input type="button" disabled="disabled" name="name" value="" />
+                            }
+                    }
+                </td>
+                <td>
+                    @{ if (item.asientosCampo > 0)
+                        {
+                            <input type="button" name="name" value=" $@item.precioCampo" />
+                        }
+                        else
+                        {
+                            <input type="button" disabled="disabled" name="name" value="" />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        bool encontre = false;
+                        int i = 0;
+                        var nombre = "";
+                        while (!encontre)
+                        {
+                            if(@item.idLocalidad == ViewBag.listaLocalidades[i].id)
+                            {
+                                nombre = ViewBag.listaLocalidades[i].nombre;
+                                encontre = true;
+                            }
+                            else
+                            {
+                                i++;
+                            }
+                        }
+
+                    }
+                    <h4>@nombre</h4>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

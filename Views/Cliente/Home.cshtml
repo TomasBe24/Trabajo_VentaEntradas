@@ -11,20 +11,21 @@
 
 @{ if (ViewBag.listaEntradas.Length == 0)
     {
-        <h3>No tenes entradas, <a href="~/Show/Index">Compra</a> </h3>
+        <h3>No tenes entradas, <a href="~/Show/Comprar">Compra</a> </h3>
     }
     else
     {
+        <a href="~/Show/Comprar">Compra más</a>
         @foreach (var item in ViewBag.listaEntradas)
         {
-<td>
-    <h2>@item.fecha</h2>
+            <td>
+                <h2>@item.fecha</h2>
 
-    <h2>@item.dniUsuario</h2>
-    <h2>@item.seccion</h2>
-    <h2>@item.precio</h2>
-    <h2>@item.asiento</h2>
-</td>
+                <h2>@item.dniUsuario</h2>
+                <h2>@item.seccion</h2>
+                <h2>@item.precio</h2>
+                <h2>@item.asiento</h2>
+            </td>
         }
     }
 }
