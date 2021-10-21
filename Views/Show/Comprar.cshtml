@@ -44,22 +44,25 @@
                 <td>
                     @{ if (item.asientosPlatea > 0)
                         {
-                            <input type="button" name="name" value=" $@item.precioPlatea" />
+                            @*<a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioPlatea </a>*@
+                            <a asp-action="ConfirmarCompra" asp-route-id="Platea, @item.id">$@item.precioPlatea</a>
                         }
                         else
-                            {
-                            <input type="button" disabled="disabled" name="name" value="" />
-                            }
+                        {
+                            <input type="button" style="pointer-events: none" name="name" value="No disponible" />
+                        }
                     }
                 </td>
                 <td>
                     @{ if (item.asientosCampo > 0)
                         {
-                            <input type="button" name="name" value=" $@item.precioCampo" />
+
+                            @*<a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioCampo</a>*@
+                            <a asp-action="ConfirmarCompra" asp-route-id="Campo, @item.id">$@item.precioCampo</a>
                         }
                         else
                         {
-                            <input type="button" disabled="disabled" name="name" value="" />
+                            <input type="button" style="pointer-events: none" name="name" value="No disponible" />
                         }
                     }
                 </td>
@@ -84,11 +87,11 @@
                     }
                     <h4>@nombre</h4>
                 </td>
-                <td>
+                @*<td>
                     <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                </td>
+                </td>*@
             </tr>
         }
     </tbody>
