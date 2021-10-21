@@ -160,5 +160,24 @@ namespace Trabajo_VentaEntradas.Controllers
             return View();
         }
 
+        public IActionResult ConfirmarCompra(int id)
+        {
+
+
+            if (id == 1)
+            {
+                ViewBag.ubicacion = "Platea";
+          
+            }
+            else
+            {
+                ViewBag.ubicacion = "Campo";
+            }
+            
+            
+
+            return View();
+        }
+
     }
 }
