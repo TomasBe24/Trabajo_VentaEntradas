@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Trabajo_VentaEntradas.Models
 {
@@ -11,6 +12,8 @@ namespace Trabajo_VentaEntradas.Models
     {
         [Key]
         public int id { get; set; }
+
+        [DisplayName("Fecha")]
         public DateTime fecha { get; set; }
         public string banda { get; set; }
         public int precioCampo { get; set; }

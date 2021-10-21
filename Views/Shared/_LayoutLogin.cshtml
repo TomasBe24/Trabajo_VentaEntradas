@@ -6,19 +6,35 @@
     <title>@ViewData["Title"] - Entradas</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/MenuLateral.css" />
+    <link rel="stylesheet" href="~/css/estiloLogin.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Entradas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <header class="header">
+        <div class="container">
+            <div class="btn-menu">
+                <label for="btn-menu">☰</label>
             </div>
-        </nav>
+            <nav class="menu">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Nosotros" asp-action="Index">Nosotros</a>
+                <a class="navbar-brand" asp-area="" asp-controller="" asp-action="">Ayuda</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Login">Inciar Sesión</a>
+            </nav>
+        </div>
     </header>
+
+    <input type="checkbox" id="btn-menu">
+    <div class="container-menu">
+        <div class="cont-menu">
+            <nav>
+                <a href="#">Mi Cuenta</a>
+                <a href="#">Mis tarjetas</a>
+                <a href="#">Mis entradas</a>
+            </nav>
+            <label for="btn-menu">✖️</label>
+        </div>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
