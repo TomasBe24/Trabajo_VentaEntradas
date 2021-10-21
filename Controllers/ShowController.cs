@@ -23,6 +23,7 @@ namespace Trabajo_VentaEntradas.Controllers
         // GET: Show
         public async Task<IActionResult> Index()
         {
+            ViewBag.listaLocalidades = _context.Localidad.ToArray();
             return View(await _context.Show.ToListAsync());
         }
 
@@ -40,7 +41,9 @@ namespace Trabajo_VentaEntradas.Controllers
             {
                 return NotFound();
             }
-
+            //show.idLocalidad
+            var nombreLocalidad =  await _context.Localidad.FirstOrDefaultAsync(m => m.id == show.idLocalidad); //Where(m => m.id == show.idLocalidad);
+            ViewBag.nombre = nombreLocalidad.nombre;
             return View(show);
         }
 

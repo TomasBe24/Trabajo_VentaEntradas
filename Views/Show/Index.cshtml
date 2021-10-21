@@ -58,9 +58,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.asientosCampo)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.idLocalidad)
-            </td>
+            @{
+                bool encontre = false;
+                int i = 0;
+                var nombre = "";
+                while (!encontre)
+                {
+                    if (@item.idLocalidad == ViewBag.listaLocalidades[i].id)
+                    {
+                        nombre = ViewBag.listaLocalidades[i].nombre;
+                        encontre = true;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+            }
+            <td>@nombre</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Details</a> |
