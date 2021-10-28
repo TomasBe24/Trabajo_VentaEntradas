@@ -5,9 +5,6 @@
 }
 
 
-<h1>Home</h1>
-
-<h2>Buenas Tardes</h2>
 
 @{ if (ViewBag.listaEntradas.Length == 0)
     {
@@ -20,11 +17,50 @@
         {
             <td>
                 <h2>@item.fecha</h2>
-
-                <h2>@item.dniUsuario</h2>
                 <h2>@item.seccion</h2>
-                <h2>@item.precio</h2>
+                @*<h2>@item.precio</h2>*@
                 <h2>@item.asiento</h2>
+                @{
+                    bool encontre = false;
+                    int i = 0;
+                    var banda = "";
+                    var idLocal = 0;
+                    while (!encontre)
+                    {
+                        if (@item.idShow == ViewBag.listaShows[i].id)
+                        {
+                            banda = ViewBag.listaShows[i].banda;
+                            idLocal = ViewBag.listaShows[i].idLocalidad;
+
+                            encontre = true;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+
+                    bool encontre2 = false;
+                    int i2 = 0;
+                    var localidad = "";
+
+                    while (!encontre2)
+                    {
+                        if (idLocal == ViewBag.listaLocalidad[i2].id)
+                        {
+                            localidad = ViewBag.listaLocalidad[i2].nombre;
+
+                            encontre2 = true;
+                        }
+                        else
+                        {
+                            i2++;
+                        }
+                    }
+
+                }
+                <h2>@banda</h2>
+                <h2>@localidad</h2>
             </td>
         }
     }

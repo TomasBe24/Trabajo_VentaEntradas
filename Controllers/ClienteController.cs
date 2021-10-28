@@ -158,6 +158,8 @@ namespace Trabajo_VentaEntradas.Controllers
             
             string dni = (User.FindFirstValue(ClaimTypes.NameIdentifier));
             ViewBag.listaEntradas = _context.Entrada.Where(m => m.dniUsuario == dni).ToArray();
+            ViewBag.listaShows = _context.Show.ToArray();
+            ViewBag.listaLocalidad = _context.Localidad.ToArray();
             return View();
         }
 

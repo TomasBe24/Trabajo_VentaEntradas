@@ -20,6 +20,8 @@ namespace Trabajo_VentaEntradas.Models
         public int precioPlatea { get; set; }
         public int asientosPlatea { get; set; }
         public int asientosCampo { get; set; }
+        
+        [Display(Name = "Localidad")]
         public int idLocalidad { get; set; }
     }
 }
