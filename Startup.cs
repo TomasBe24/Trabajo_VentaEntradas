@@ -30,9 +30,6 @@ namespace Trabajo_VentaEntradas
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(ConfigurarcionCookie);
             services.AddDbContext<EntradasDbContext>(options => options.UseSqlite("filename=DB.db"));
-            //services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\USURIO\Desktop\TpNT\Trabajo_VentaEntradas\BaseDato\DB.db"));
-            //services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\marti\OneDrive\Escritorio\ORT\1° 2°\PNT\Trabajo_VentaEntradas\BaseDato\DB.db"));
-            //services.AddDbContext<EntradasDbContext>(options => options.UseSqlite(@"filename=C:\Users\tomas\Desktop\Trabajo_VentaEntradas\BaseDato\DB.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
