@@ -82,6 +82,38 @@ namespace Trabajo_VentaEntradas.Controllers
             {
                 return NotFound();
             }
+
+            List<Localidad> lst = _context.Localidad.ToList();
+
+            List<SelectListItem> items = lst.ConvertAll(m =>
+            {
+                return new SelectListItem()
+                {
+                    Text = m.nombre.ToString(),
+                    Value = m.id.ToString(),
+                    Selected = false //aca esta el tuco
+                };
+            });
+
+            int i = 0;
+            bool encontre = false;
+            while (i < items.Count && !encontre)
+            {
+                if (items[i].Value == show.idLocalidad.ToString())
+                {
+                    items[i].Selected = true;
+                    encontre = true;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+
+            ViewBag.Items = items;
+
+
             return View(show);
         }
 
