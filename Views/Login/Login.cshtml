@@ -1,35 +1,51 @@
 ﻿@{
     Layout = "_LayoutLogin";
 }
+<!DOCTYPE html>
+<html lang="es-ar">
 
-<div class="text-center">
-    <h1>Login</h1>
-</div>
-
-<hr />
-
-<div class="row">
-    <div class="col-lg-offset-4 col-md-4">
-        <form method="post" asp-action="Login">
-            <div class="text-danger">
-                @ViewBag.Error
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/css/EstiloLog.css" />
+</head>
+<body>
+   <style>
+       body {
+           display: flex;
+           background-image: url(https://gerente.com/co/wp-content/uploads/sites/16/2017/04/concierto-rsm.jpeg);
+           background-size: cover;
+           background-repeat: no-repeat;
+           justify-content: center;
+           align-items: center;
+       }
+   </style>
+    <main>
+        <div class="row">
+            <div class="divForm col-lg-offset-4 col-md-4">
+                <form method="post" asp-action="Login">
+                    <div class="text-danger">
+                        @ViewBag.Error
+                    </div>
+                    <div class="form-group">
+                        <label for="dni" class="control-label">Ingrese su DNI:</label>
+                        <input placeholder="DNI" min="0" max="99999999" id="dni" name="dni" class="form-control" type="number" value="@ViewBag.dni" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="control-label">Ingrese su contraseña:</label>
+                        <input placeholder="Contraseña" id="password" name="contrasenia" class="form-control" type="password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="rol" class="control-label">Rol:</label>
+                        <input name="rol" type="radio" value="@Rol.Administrador" /> @Rol.Administrador.ToString()
+                        <input name="rol" type="radio" value="@Rol.Cliente" /> @Rol.Cliente.ToString()
+                    </div>
+                    <a asp-area="" asp-controller="Cliente" asp-action="Create">Registrarse</a>
+                    <div class="form-group">
+                        <input type="submit" value="Iniciar sesión" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label laber-for="rol" class="control-label">Rol:</label>
-                <input name="rol" type="radio" value="@Rol.Administrador" /> @Rol.Administrador.ToString()
-                <input name="rol" type="radio" value="@Rol.Cliente" /> @Rol.Cliente.ToString()
-            </div>
-            <div class="form-group">
-                <label laber-for="Text" class="control-label">Dni:</label>
-                <input name="dni" class="form-control" type="number" value="@ViewBag.dni" />
-            </div>
-            <div class="form-group">
-                <label label-for="Password" class="control-label">Contraseña:</label>
-                <input name="contrasenia" class="form-control" type="password" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-success" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
+    </main>
+</body>
+</html>
