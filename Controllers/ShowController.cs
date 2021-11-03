@@ -163,24 +163,34 @@ namespace Trabajo_VentaEntradas.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ConfirmarCompra(int id)
+        {
+            var show =  _context.Show
+               .FirstOrDefault(m => m.id == id);
+
+            ViewModels.ConfirmarCompraVM modelo = new ViewModels.ConfirmarCompraVM();
+
+            modelo.idShow = show.id;
+            modelo.fecha = show.fecha;
+            modelo.banda = show.banda;
+            modelo.precioCampo = show.precioCampo;
+            modelo.precioPlatea = show.precioPlatea;
+            modelo.idLocalidad = show.idLocalidad;
+            modelo.localidad = _context.Localidad
+                .FirstOrDefault(l => l.id == modelo.idLocalidad).nombre;
+
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmarCompra(string seccion)
         {
 
 
-            if (id == 1)
-            {
-                ViewBag.ubicacion = "Platea";
-          
-            }
-            else
-            {
-                ViewBag.ubicacion = "Campo";
-            }
-            
-            
-
-            return View();
+            return RedirectToAction(nameof(ClienteController.Home), "Cliente");
         }
+
 
     }
 }
