@@ -22,9 +22,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.asientosPlatea)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.asientosCampo)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.asientosCampo)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.idLocalidad)
             </th>
@@ -42,23 +42,11 @@
                     @item.banda
                 </td>
                 <td>
-                    @{ if (item.asientosPlatea > 0)
+                    @{ if (item.asientosPlatea != 0 && item.asientosCampo != 0)
                         {
                             @*<a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioPlatea </a>*@
-                            <a asp-action="ConfirmarCompra" asp-route-id="Platea, @item.id">$@item.precioPlatea</a>
-                        }
-                        else
-                        {
-                            <input type="button" style="pointer-events: none" name="name" value="No disponible" />
-                        }
-                    }
-                </td>
-                <td>
-                    @{ if (item.asientosCampo > 0)
-                        {
+                            <a type="button" class="btn btn-primary" asp-action="ConfirmarCompra" asp-route-id="@item.id">Comprar</a>
 
-                            @*<a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioCampo</a>*@
-                            <a asp-action="ConfirmarCompra" asp-route-id="Campo, @item.id">$@item.precioCampo</a>
                         }
                         else
                         {
@@ -66,6 +54,19 @@
                         }
                     }
                 </td>
+                @*<td>
+                        @{ if (item.asientosCampo > 0)
+                            {
+
+                                <a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioCampo</a>
+                                <a asp-for="seccion" asp-action="ConfirmarCompra" >$@item.precioCampo</a>
+                            }
+                            else
+                            {
+                                <input type="button" style="pointer-events: none" name="name" value="No disponible" />
+                            }
+                        }
+                    </td>*@
                 <td>
                     @{
                         bool encontre = false;
@@ -73,7 +74,7 @@
                         var nombre = "";
                         while (!encontre)
                         {
-                            if(@item.idLocalidad == ViewBag.listaLocalidades[i].id)
+                            if (@item.idLocalidad == ViewBag.listaLocalidades[i].id)
                             {
                                 nombre = ViewBag.listaLocalidades[i].nombre;
                                 encontre = true;
@@ -88,10 +89,10 @@
                     <h4>@nombre</h4>
                 </td>
                 @*<td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                </td>*@
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>*@
             </tr>
         }
     </tbody>
