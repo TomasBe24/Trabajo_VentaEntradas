@@ -1,13 +1,12 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es-ar">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Entradas</title>
+    <title>@ViewData["Title"] - Ticketin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/MenuLateral.css" />
-    <link rel="stylesheet" href="~/css/estiloLogin.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/menuLateral.css">
 </head>
 <body>
     <header class="header">
@@ -16,21 +15,23 @@
                 <label for="btn-menu">☰</label>
             </div>
             <nav class="menu">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Nosotros" asp-action="Index">Nosotros</a>
-                <a class="navbar-brand" asp-area="" asp-controller="" asp-action="">Ayuda</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Login">Inciar Sesión</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Administrador" asp-action="Home">Inicio</a>
+                <a class="nav-link text-success font-italic" asp-area="" asp-controller="" asp-action="">@User.Identity.Name</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Salir">Salir</a>
             </nav>
         </div>
     </header>
 
+    <!--	--------------->
     <input type="checkbox" id="btn-menu">
     <div class="container-menu">
         <div class="cont-menu">
             <nav>
-                <a href="#">Mi Cuenta</a>
-                <a href="#">Mis tarjetas</a>
-                <a href="#">Mis entradas</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Shows" asp-action="Index">Shows</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Entrada" asp-action="Index">Entradas</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Localidad" asp-action="Index">Localidades</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Administrador" asp-action="Index">Administradores</a>
             </nav>
             <label for="btn-menu">✖️</label>
         </div>
@@ -43,7 +44,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Entradas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Ticketin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

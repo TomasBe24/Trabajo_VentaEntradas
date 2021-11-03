@@ -6,7 +6,7 @@
 
 body {
     display: flex;
-    background-image: url(https://gerente.com/co/wp-content/uploads/sites/16/2017/04/concierto-rsm.jpeg);
+    background-image: url(../imagenes/fondoLogin.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     justify-content: center;

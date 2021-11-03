@@ -27,8 +27,15 @@ namespace Trabajo_VentaEntradas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                opciones =>
+                {
+                    opciones.LoginPath = "/Login/Login";
+                    opciones.AccessDeniedPath = "/Login/NoAutorizado";
+                    opciones.LogoutPath = "/Login/Salir";
+                }
+            );
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(ConfigurarcionCookie);
             services.AddDbContext<EntradasDbContext>(options => options.UseSqlite("filename=DB.db"));
         }
 
@@ -62,14 +69,5 @@ namespace Trabajo_VentaEntradas
             });
             app.UseCookiePolicy();
         }
-
-        public static void ConfigurarcionCookie(CookieAuthenticationOptions opciones)
-        {
-            opciones.LoginPath = "/Login/Login";
-            opciones.AccessDeniedPath = "/Login/NoAutorizado";
-            opciones.LogoutPath = "/Login/Logout";
-            opciones.ExpireTimeSpan = System.TimeSpan.FromMinutes(1);
-        }
-
     }
 }

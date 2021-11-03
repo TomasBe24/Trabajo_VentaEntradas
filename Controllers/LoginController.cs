@@ -35,7 +35,7 @@ namespace Trabajo_VentaEntradas.Controllers
         [HttpPost]
         public IActionResult Login(string dni, string contrasenia, Rol rol)
         {
-            string returnUrl = TempData[_Return_Url] as string;
+            var urlIngreso = TempData["UrlIngreso"] as string;
 
             if (!string.IsNullOrWhiteSpace(dni) && !string.IsNullOrWhiteSpace(contrasenia))
             {
@@ -81,11 +81,11 @@ namespace Trabajo_VentaEntradas.Controllers
 
                     if (rol == Rol.Cliente)
                     {
-                        return RedirectToAction(nameof(ClienteController.Home), "Cliente");
+                        return RedirectToAction("Home", "Cliente");
                     }
                     else
                     {
-                        return RedirectToAction(nameof(HomeController.Index), "Home");
+                        return RedirectToAction("Index", "Home");
                     }
 
 
@@ -95,7 +95,7 @@ namespace Trabajo_VentaEntradas.Controllers
             // Completo estos dos campos para poder retornar a la vista en caso de errores.
             ViewBag.Error = "Usuario o contraseña incorrectos";
             ViewBag.dni = dni;
-            TempData[_Return_Url] = returnUrl;
+            TempData["UrlIngreso"] = urlIngreso; // Volvemos a enviarla en el TempData para no perderla
 
             return View();
         }
@@ -105,7 +105,15 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
 
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Salir()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]

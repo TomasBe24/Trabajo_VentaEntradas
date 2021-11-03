@@ -1,0 +1,8 @@
+﻿body {
+    display: flex;
+    background-image: url(../imagenes/fondoAdministrador.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
