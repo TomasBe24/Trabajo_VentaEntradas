@@ -19,10 +19,11 @@
                     <input type="text" value="@Model.idLocalidad" readonly hidden asp-for="idLocalidad" />
                     <input type="text" value="@Model.idShow" readonly hidden asp-for="idShow" />
                 </div>
+
                 <div class="form-group">
                     <label>Seccion: </label>&nbsp   @*&nbsp = Espacio en blanco*@
-                    <input type="radio" name="seccion" value="@Model.precioCampo" /> Campo $@Model.precioCampo
-                    <input type="radio" name="seccion" value="@Model.precioPlatea" /> Platea $@Model.precioPlatea
+                    <input type="radio" name="seccion" value="1" /> Campo $@Model.precioCampo
+                    <input type="radio" name="seccion" value="2" /> Platea $@Model.precioPlatea
                     <br />
                 </div>
 
@@ -50,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Comprar" class="btn btn-success" asp-action="ConfirmarCompra" formmethod="post" />
+                    <input type="submit" value="Comprar" class="btn btn-success" asp-action="ConfirmarCompra" asp-controller="Entrada" formmethod="post" />
                 </div>
             </form>
 

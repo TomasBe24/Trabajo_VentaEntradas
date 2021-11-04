@@ -63,7 +63,7 @@ body {
             line-height: normal;
             text-decoration: none;
             color: #fff;
-            transition: all 0.3s ease;
+            /*transition: all 0.3s ease;*/
             border-bottom: 2px solid transparent;
             font-size: 15px;
             margin-right: 5px;
@@ -87,7 +87,7 @@ body {
     height: 100vh;
     top: 0;
     left: 0;
-    transition: all 500ms ease;
+    /*transition: all 500ms ease;*/
     opacity: 0;
     visibility: hidden;
 }
@@ -103,7 +103,7 @@ body {
     background: #1c1c1c;
     height: 100vh;
     position: relative;
-    transition: all 500ms ease;
+   /* transition: all 500ms ease;*/
     transform: translateX(-100%);
 }
 

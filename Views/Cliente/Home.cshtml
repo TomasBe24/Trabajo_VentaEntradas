@@ -12,7 +12,7 @@
     }
     else
     {
-        <a href="~/Show/Comprar">Compra más</a>
+
         @foreach (var item in ViewBag.listaEntradas)
         {
             <td>
@@ -61,8 +61,10 @@
                 }
                 <h2>@banda</h2>
                 <h2>@localidad</h2>
+                <br />
             </td>
         }
+        <a href="~/Show/Comprar">Compra más</a>
     }
 }
 

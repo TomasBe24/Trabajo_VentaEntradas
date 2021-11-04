@@ -42,7 +42,7 @@ namespace Trabajo_VentaEntradas.Controllers
                 return NotFound();
             }
             //show.idLocalidad
-            var nombreLocalidad =  await _context.Localidad.FirstOrDefaultAsync(m => m.id == show.idLocalidad); //Where(m => m.id == show.idLocalidad);
+            var nombreLocalidad = await _context.Localidad.FirstOrDefaultAsync(m => m.id == show.idLocalidad); //Where(m => m.id == show.idLocalidad);
             ViewBag.nombre = nombreLocalidad.nombre;
             return View(show);
         }
@@ -189,7 +189,7 @@ namespace Trabajo_VentaEntradas.Controllers
         public IActionResult Comprar()
         {
             ViewBag.listaShows = _context.Show.Where(m => m.asientosCampo > 0 || m.asientosPlatea > 0).ToArray();
-            
+
             ViewBag.listaLocalidades = _context.Localidad.ToArray();
 
             return View();
@@ -198,7 +198,7 @@ namespace Trabajo_VentaEntradas.Controllers
         [HttpGet]
         public IActionResult ConfirmarCompra(int id)
         {
-            var show =  _context.Show
+            var show = _context.Show
                .FirstOrDefault(m => m.id == id);
 
             ViewModels.ConfirmarCompraVM modelo = new ViewModels.ConfirmarCompraVM();
@@ -215,13 +215,37 @@ namespace Trabajo_VentaEntradas.Controllers
             return View(modelo);
         }
 
-        [HttpPost]
-        public IActionResult ConfirmarCompra(string seccion)
-        {
+        //[HttpPost]
+        //public async Task<IActionResult> ConfirmarCompra(string banda, DateTime fecha, int idShow, int seccion)
+        //{
+        //    int precio;
+        //    string seccionFinal;
+        //    Show show = await _context.Show.FirstOrDefaultAsync(s => s.id == idShow);
+
+        //    if (seccion == 1)
+        //    {
+        //        precio = show.precioCampo;
+        //        seccionFinal = "Campo";
+        //    }
+        //    else
+        //    {
+        //        precio = show.precioPlatea;
+        //        seccionFinal = "Platea";
+        //    }
+
+        //    Entrada entrada = null;
+
+            
+        //        _context.Entrada.Add(entrada);
+        //        await _context.Entrada.SaveChangesAsync();
+        //        return RedirectToAction(nameof(ClienteController.Home), "Cliente");
+            
 
 
-            return RedirectToAction(nameof(ClienteController.Home), "Cliente");
-        }
+        //    //return RedirectToAction("Create", "Entrada", entrada);
+
+           
+        //}
 
 
     }
