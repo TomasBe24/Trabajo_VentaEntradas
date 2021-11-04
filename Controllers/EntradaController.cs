@@ -152,46 +152,53 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ConfirmarCompra(string banda, DateTime fecha, int idShow, int seccion)
+        public async Task<IActionResult> ConfirmarCompra(string banda, DateTime fecha, int idShow, int seccion, int Entrada)
         {
             int precioFinal;
             string seccionFinal;
             Show show = await _context.Show.FirstOrDefaultAsync(s => s.id == idShow);
             int asientoo = 0;
-            if (seccion == 1)
+
+            //llamado a comprar
+
+            for (int i = 0; i < Entrada; i++)
             {
-                precioFinal = show.precioCampo;
-                seccionFinal = "Campo";
-                asientoo = show.asientosCampo;
-                show.asientosCampo--;
-                _context.Show.Update(show);
+
+                if (seccion == 1)
+                {
+                    precioFinal = show.precioCampo;
+                    seccionFinal = "Campo";
+                    asientoo = show.asientosCampo;
+                    show.asientosCampo--;
+                    _context.Show.Update(show);
+                }
+                else
+                {
+                    precioFinal = show.precioPlatea;
+                    seccionFinal = "Platea";
+                    asientoo = show.asientosPlatea;
+                    show.asientosPlatea--;
+                    _context.Show.Update(show);
+                }
+
+                Entrada entrada;
+                entrada = new Entrada
+                {
+                    seccion = seccionFinal,
+                    precio = precioFinal,
+                    asiento = asientoo,
+                    fecha = fecha,
+                    dniUsuario = (User.FindFirstValue(ClaimTypes.NameIdentifier)),
+                    idShow = idShow
+                };
+
+
+                _context.Add(entrada);
+                await _context.SaveChangesAsync();
             }
-            else
-            {
-                precioFinal = show.precioPlatea;
-                seccionFinal = "Platea";
-                asientoo = show.asientosPlatea;
-                show.asientosPlatea--;
-                _context.Show.Update(show);
-            }
-
-            Entrada entrada;
-            entrada = new Entrada
-            {
-                seccion = seccionFinal,
-                precio = precioFinal,
-                asiento = asientoo,
-                fecha = fecha,
-                dniUsuario = (User.FindFirstValue(ClaimTypes.NameIdentifier)),
-                idShow = idShow
-            };
-
-
-            _context.Add(entrada);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(ClienteController.Home), "Cliente");
 
-            
+
             //el for para que cree varias entradas al mismo tiempo
 
         }
