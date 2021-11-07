@@ -1,0 +1,64 @@
+﻿html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body {
+    display: flex;
+    background-image: url(../imagenes/fondoRegistrar.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.divForm {
+    color: #c7c5c1;
+    width: 350px;
+    border-radius: 8px;
+    background-color: rgba(36, 36, 36, 0.7);
+    box-shadow: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    color: #EEEEEE;
+    background-color: #333941;
+    height: 48px;
+    border-radius: 15px;
+    width: 100%;
+    font-size: 1.2em;
+    align-self: center;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+    .btn:hover {
+        background-color: #948f46;
+    }
+
+    .btn:active {
+        background-color: #b3ac46;
+    }
+
+a {
+    color: #917321;
+}
+
+    a:hover {
+        color: #948f46;
+    }

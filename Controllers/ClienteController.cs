@@ -47,6 +47,7 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         // GET: Cliente/Create
+        [AllowAnonymous]
         public IActionResult Create()
         {
             return View();

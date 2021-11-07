@@ -18,6 +18,7 @@ namespace Trabajo_VentaEntradas.Models
         public string banda { get; set; }
         public int precioCampo { get; set; }
         public int precioPlatea { get; set; }
+        [Display(Name ="Entrada")]
         public int asientosPlatea { get; set; }
         public int asientosCampo { get; set; }
         
