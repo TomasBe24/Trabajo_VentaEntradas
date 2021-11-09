@@ -1,51 +1,84 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es-ar">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Ticketin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/menuLateral.css">
+    <link rel="stylesheet" type="text/css" href="~/css/MenuLateral.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/style.css" />
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <header class="header">
-        <div class="container">
-            @if (User.Identity.IsAuthenticated)
-            {
-            <div class="btn-menu">
-                <label for="btn-menu">☰</label>
-            </div>
-            }
-            <nav class="menu">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <a class="nav-link text-dark font-italic" asp-area="" asp-controller="Cliente" asp-action="Details">@User.Identity.Name</a>
-                    <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Salir">Salir</a>
-                }
-                else
-                {
-                    <a class="navbar-brand" asp-area="" asp-controller="Login" asp-action="Login">Inciar Sesión</a>
-                }
-            </nav>
-        </div>
-    </header>
-
-    <!--	--------------->
+<body id="body">
     @if (User.Identity.IsAuthenticated)
     {
-        <input type="checkbox" id="btn-menu">
-        <div class="container-menu">
-        <div class="cont-menu">
-            <nav>
-                <a href="#">Mis tarjetas</a>
-                <a href="#">Mis entradas</a>
-            </nav>
-            <label for="btn-menu">✖️</label>
+    <header>
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
         </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+            <div class="container navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>
+                        <a class="nav-link text-success font-italic" asp-area="">@User.Identity.Name</a>
+                    </li>
+                    <li>
+                            <a class="nav-link text-danger" asp-area="" asp-controller="Login" asp-action="Salir">Salir</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+        <div class="menu__side" id="menu_side">
+
+            <div class="name__page">
+                <i class="icon-ticket"></i>
+                <h4>Ticketin</h4>
+            </div>
+
+            <div class="options__menu">
+
+                <a class="selected" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="option">
+                        <i class="icon-home3" title="Inicio"></i>
+                        <h4>Inicio</h4>
+                    </div>
+                </a>
+
+                <a asp-area="" asp-controller="Show" asp-action="Index">
+                    <div class="option">
+                        <i class="icon-star-full" title="Shows"></i>
+                        <h4>Shows</h4>
+                    </div>
+                </a>
+
+                <a asp-area="" asp-controller="Administrador" asp-action="Index">
+                    <div class="option">
+                        <i class="icon-user-tie" title="Administradores"></i>
+                        <h4>Admins</h4>
+                    </div>
+                </a>
+
+                <a asp-area="" asp-controller="Cliente" asp-action="Index">
+                    <div class="option">
+                        <i class="icon-users" title="Clientes"></i>
+                        <h4>Clientes</h4>
+                    </div>
+                </a>
+
+                <a asp-area="" asp-controller="Localidad" asp-action="Index">
+                    <div class="option">
+                        <i class="icon-location2" title="Localidades"></i>
+                        <h4>Localidades</h4>
+                    </div>
+                </a>
+            </div>
+
         </div>
     }
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -60,6 +93,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/script.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
