@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
+    [Authorize]
     public class EntradaController : Controller
     {
         private readonly EntradasDbContext _context;
@@ -21,6 +23,7 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         // GET: Entrada
+        [Authorize(Roles = nameof(Rol.Administrador))]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Entrada.ToListAsync());

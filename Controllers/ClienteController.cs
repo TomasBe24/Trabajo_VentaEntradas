@@ -12,7 +12,7 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
-    [Authorize(Roles = "Administrador,Cliente")]
+    [Authorize]
     public class ClienteController : Controller
     {
         private readonly EntradasDbContext _context;
@@ -23,6 +23,7 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         // GET: Cliente
+        [Authorize(Roles = nameof(Rol.Administrador))]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cliente.ToListAsync());

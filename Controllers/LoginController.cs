@@ -101,14 +101,6 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         [Authorize]
-        public IActionResult Logout()
-        {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        [Authorize]
         public async Task<IActionResult> Salir()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
+    [Authorize]
     public class ShowController : Controller
     {
         private readonly EntradasDbContext _context;
@@ -21,6 +23,7 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         // GET: Show
+        [Authorize(Roles = nameof(Rol.Administrador))]
         public async Task<IActionResult> Index()
         {
             ViewBag.listaLocalidades = _context.Localidad.ToArray();
@@ -48,6 +51,7 @@ namespace Trabajo_VentaEntradas.Controllers
         }
 
         // GET: Show/Create
+        [Authorize(Roles = nameof(Rol.Administrador))]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +62,7 @@ namespace Trabajo_VentaEntradas.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = nameof(Rol.Administrador))]
         public async Task<IActionResult> Create([Bind("id,fecha,banda,precioCampo,precioPlatea,asientosPlatea,asientosCampo,idLocalidad")] Show show)
         {
             if (ModelState.IsValid)

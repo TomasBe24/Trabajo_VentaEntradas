@@ -10,7 +10,7 @@ using Trabajo_VentaEntradas.Models;
 
 namespace Trabajo_VentaEntradas.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = nameof(Rol.Administrador))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
