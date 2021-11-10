@@ -39,41 +39,59 @@
             </div>
 
             <div class="options__menu">
+                @if (User.IsInRole("Administrador"))
+                {
+                    <a class="selected" asp-area="" asp-controller="Home" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-home3" title="Inicio"></i>
+                            <h4>Inicio</h4>
+                        </div>
+                    </a>
 
-                <a class="selected" asp-area="" asp-controller="Home" asp-action="Index">
-                    <div class="option">
-                        <i class="icon-home3" title="Inicio"></i>
-                        <h4>Inicio</h4>
-                    </div>
-                </a>
+                    <a asp-area="" asp-controller="Show" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-star-full" title="Shows"></i>
+                            <h4>Shows</h4>
+                        </div>
+                    </a>
 
-                <a asp-area="" asp-controller="Show" asp-action="Index">
-                    <div class="option">
-                        <i class="icon-star-full" title="Shows"></i>
-                        <h4>Shows</h4>
-                    </div>
-                </a>
+                    <a asp-area="" asp-controller="Administrador" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-user-tie" title="Administradores"></i>
+                            <h4>Admins</h4>
+                        </div>
+                    </a>
 
-                <a asp-area="" asp-controller="Administrador" asp-action="Index">
-                    <div class="option">
-                        <i class="icon-user-tie" title="Administradores"></i>
-                        <h4>Admins</h4>
-                    </div>
-                </a>
+                    <a asp-area="" asp-controller="Cliente" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-users" title="Clientes"></i>
+                            <h4>Clientes</h4>
+                        </div>
+                    </a>
 
-                <a asp-area="" asp-controller="Cliente" asp-action="Index">
-                    <div class="option">
-                        <i class="icon-users" title="Clientes"></i>
-                        <h4>Clientes</h4>
-                    </div>
-                </a>
+                    <a asp-area="" asp-controller="Localidad" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-location2" title="Localidades"></i>
+                            <h4>Localidades</h4>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <a class="selected" asp-area="" asp-controller="Cliente" asp-action="Home">
+                        <div class="option">
+                            <i class="icon-home3" title="Inicio"></i>
+                            <h4>Inicio</h4>
+                        </div>
+                    </a>
 
-                <a asp-area="" asp-controller="Localidad" asp-action="Index">
-                    <div class="option">
-                        <i class="icon-location2" title="Localidades"></i>
-                        <h4>Localidades</h4>
-                    </div>
-                </a>
+                    <a asp-area="" asp-controller="Show" asp-action="Comprar">
+                        <div class="option">
+                            <i class="icon-star-full" title="Entradas"></i>
+                            <h4>Comprar entradas</h4>
+                        </div>
+                    </a>
+                }
             </div>
 
         </div>
