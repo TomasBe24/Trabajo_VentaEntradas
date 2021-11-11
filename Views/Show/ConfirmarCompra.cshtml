@@ -22,8 +22,8 @@
 
                 <div class="form-group">
                     <label>Seccion: </label>&nbsp   @*&nbsp = Espacio en blanco*@
-                    <input type="radio" name="seccion" value="1" onclick="actualizar(@Model.asientosCampo)" /> Campo $@Model.precioCampo
-                    <input type="radio" name="seccion" value="2" onclick="actualizar(@Model.asientosPlatea)" /> Platea $@Model.precioPlatea
+                    <input type="radio" name="seccion" value="1" onclick="actualizar(@Model.asientosCampo, 1)" /> Campo $@Model.precioCampo
+                    <input type="radio" name="seccion" value="2" onclick="actualizar(@Model.asientosPlatea, 2)" /> Platea $@Model.precioPlatea
                     <br />
                 </div>
 
@@ -55,7 +55,7 @@
                 </div>
             </form>
 
-            Precio <span id="Precio">  </span>
+            Subtotal: <span id="Precio">  </span>
 
 
             @*<script src="~/js/Compra.js"></script>
@@ -88,8 +88,8 @@
 
                 </script>*@
 
-            <script>
-                function actualizar(asientos) {
+        <script>
+                function actualizar(asientos, check) {
                     document.getElementById("cantEntradas").options.length = 0;
 
 
@@ -100,6 +100,7 @@
                             var opt = document.createElement('option');
                             opt.value = i;
                             opt.innerHTML = i;
+                            opt.id = "elemento";
                             select.appendChild(opt);
                         }
                     } else if (asientos > 5) {
@@ -107,12 +108,35 @@
                             var opt = document.createElement('option');
                             opt.value = i;
                             opt.innerHTML = i;
+                            opt.id = "elemento";
                             select.appendChild(opt);
                         }
                     }
 
+                    document.getElementById("cantEntradas").value = null;
+
+                    if (document.getElementById("elemento") != null) {
+
+                        document.getElementById("cantEntradas").addEventListener("change", function () {
+                            var cant = document.getElementById("cantEntradas").value;
+                            if (check == 1) {
+                                var precio = @Model.precioCampo * cant;
+                                @*alert("entro a campo, cant vale" + cant + "y precio vale " + precio + "y el precio campo vale " + @Model.precioCampo);*@
+                            } else {
+                                var precio = @Model.precioPlatea * cant;
+                                @*alert("entro a platea, cant vale" + cant + "y precio vale " + precio + "y el precio campo vale " + @Model.precioCampo);*@
+                            }
+
+                            document.getElementById("Precio").innerHTML = " $" + precio;
+
+                        });
+
+                    }
+
                 }
-            </script>
+
+
+        </script>
 
         </div>
     </div>
