@@ -54,6 +54,20 @@ namespace Trabajo_VentaEntradas.Controllers
         [Authorize(Roles = nameof(Rol.Administrador))]
         public IActionResult Create()
         {
+            List<Localidad> lst = _context.Localidad.ToList();
+
+            List<SelectListItem> items = lst.ConvertAll(m =>
+            {
+                return new SelectListItem()
+                {
+                    Text = m.nombre.ToString(),
+                    Value = m.id.ToString(),
+                    Selected = false //aca esta el tuco
+                };
+            });
+
+            ViewBag.Items = items;
+
             return View();
         }
 
