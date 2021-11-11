@@ -12,58 +12,69 @@
     }
     else
     {
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var item in ViewBag.listaEntradas)
+            {
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 
-        @foreach (var item in ViewBag.listaEntradas)
-        {
-            <td>
-                <h2>@item.fecha</h2>
-                <h2>@item.seccion</h2>
-                @*<h2>@item.precio</h2>*@
-                <h2>@item.asiento</h2>
-                @{
-                    bool encontre = false;
-                    int i = 0;
-                    var banda = "";
-                    var idLocal = 0;
-                    while (!encontre)
-                    {
-                        if (@item.idShow == ViewBag.listaShows[i].id)
-                        {
-                            banda = ViewBag.listaShows[i].banda;
-                            idLocal = ViewBag.listaShows[i].idLocalidad;
 
-                            encontre = true;
-                        }
-                        else
-                        {
-                            i++;
-                        }
-                    }
 
-                    bool encontre2 = false;
-                    int i2 = 0;
-                    var localidad = "";
+                            <h2>@item.fecha</h2>
+                            <h2>@item.seccion</h2>
+                            @*<h2>@item.precio</h2>*@
+                            <h2>@item.asiento</h2>
+                            @{
+                                bool encontre = false;
+                                int i = 0;
+                                var banda = "";
+                                var idLocal = 0;
+                                while (!encontre)
+                                {
+                                    if (@item.idShow == ViewBag.listaShows[i].id)
+                                    {
+                                        banda = ViewBag.listaShows[i].banda;
+                                        idLocal = ViewBag.listaShows[i].idLocalidad;
 
-                    while (!encontre2)
-                    {
-                        if (idLocal == ViewBag.listaLocalidad[i2].id)
-                        {
-                            localidad = ViewBag.listaLocalidad[i2].nombre;
+                                        encontre = true;
+                                    }
+                                    else
+                                    {
+                                        i++;
+                                    }
+                                }
 
-                            encontre2 = true;
-                        }
-                        else
-                        {
-                            i2++;
-                        }
-                    }
+                                bool encontre2 = false;
+                                int i2 = 0;
+                                var localidad = "";
 
-                }
-                <h2>@banda</h2>
-                <h2>@localidad</h2>
-                <br />
-            </td>
-        }
+                                while (!encontre2)
+                                {
+                                    if (idLocal == ViewBag.listaLocalidad[i2].id)
+                                    {
+                                        localidad = ViewBag.listaLocalidad[i2].nombre;
+
+                                        encontre2 = true;
+                                    }
+                                    else
+                                    {
+                                        i2++;
+                                    }
+                                }
+
+                            }
+                            <h2>@banda</h2>
+                            <h2>@localidad</h2>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                            
+            }
+        </div>
         <a href="~/Show/Comprar">Compra más</a>
     }
 }
