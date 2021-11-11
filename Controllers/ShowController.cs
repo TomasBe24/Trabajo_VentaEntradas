@@ -225,6 +225,8 @@ namespace Trabajo_VentaEntradas.Controllers
             modelo.idShow = show.id;
             modelo.fecha = show.fecha;
             modelo.banda = show.banda;
+            modelo.asientosCampo = show.asientosCampo;
+            modelo.asientosPlatea = show.asientosPlatea;
             modelo.precioCampo = show.precioCampo;
             modelo.precioPlatea = show.precioPlatea;
             modelo.idLocalidad = show.idLocalidad;
