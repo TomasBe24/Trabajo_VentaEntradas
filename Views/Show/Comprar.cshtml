@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<Trabajo_VentaEntradas.Models.Show>
-
+@using System.Linq;
 
 @{
     ViewData["Title"] = "Shows disponibles";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //List<Localidad> items = (List<Localidad>)ViewBag.listaLocalidades;
 }
 
 
@@ -20,15 +21,12 @@
                 @Html.DisplayNameFor(model => model.banda)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.asientosPlatea)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.asientosCampo)
-                </th>*@
-            <th>
                 @Html.DisplayNameFor(model => model.idLocalidad)
             </th>
-            <th></th>
+            <th>
+
+            </th>
+
         </tr>
     </thead>
     <tbody>
@@ -41,32 +39,6 @@
                 <td>
                     @item.banda
                 </td>
-                <td>
-                    @{ if (item.asientosPlatea != 0 && item.asientosCampo != 0)
-                        {
-                            @*<a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioPlatea </a>*@
-                            <a type="button" class="btn btn-primary" asp-action="ConfirmarCompra" asp-route-id="@item.id">Comprar</a>
-
-                        }
-                        else
-                        {
-                            <input type="button" style="pointer-events: none" name="name" value="No disponible" />
-                        }
-                    }
-                </td>
-                @*<td>
-                        @{ if (item.asientosCampo > 0)
-                            {
-
-                                <a href="~/Show/ConfirmarCompra" class="btn btn-primary">$@item.precioCampo</a>
-                                <a asp-for="seccion" asp-action="ConfirmarCompra" >$@item.precioCampo</a>
-                            }
-                            else
-                            {
-                                <input type="button" style="pointer-events: none" name="name" value="No disponible" />
-                            }
-                        }
-                    </td>*@
                 <td>
                     @{
                         bool encontre = false;
@@ -84,15 +56,15 @@
                                 i++;
                             }
                         }
-
+                    
                     }
                     <h4>@nombre</h4>
+                   
+
                 </td>
-                @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                    </td>*@
+                <td>
+                    <a type="button" class="btn btn-primary" asp-action="ConfirmarCompra" asp-route-id="@item.id">Comprar</a>
+                </td>
             </tr>
         }
     </tbody>

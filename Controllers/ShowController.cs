@@ -193,7 +193,7 @@ namespace Trabajo_VentaEntradas.Controllers
 
         public IActionResult Comprar()
         {
-            ViewBag.listaShows = _context.Show.Where(m => m.asientosCampo > 0 || m.asientosPlatea > 0).ToArray();
+            ViewBag.listaShows = _context.Show.Where(m => (m.asientosCampo > 0 || m.asientosPlatea > 0) /*&& m.fecha > DateTime.Now*/).ToArray();
 
             ViewBag.listaLocalidades = _context.Localidad.ToArray();
 
@@ -251,6 +251,11 @@ namespace Trabajo_VentaEntradas.Controllers
 
            
         //}
+
+        public int prueba()
+        {
+            return 2;
+        }
 
 
     }

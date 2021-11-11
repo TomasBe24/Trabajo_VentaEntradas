@@ -5,6 +5,7 @@
         @{
             ViewData["Title"] = "Confirmar Compra";
             Layout = "~/Views/Shared/_Layout.cshtml";
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
         }
 
         <div>
@@ -22,7 +23,7 @@
 
                 <div class="form-group">
                     <label>Seccion: </label>&nbsp   @*&nbsp = Espacio en blanco*@
-                    <input type="radio" name="seccion" value="1" /> Campo $@Model.precioCampo
+                    <input type="radio" name="seccion" value="1" id="radio1" onclick="prueba()" /> Campo $@Model.precioCampo
                     <input type="radio" name="seccion" value="2" /> Platea $@Model.precioPlatea
                     <br />
                 </div>
@@ -46,7 +47,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" value="@Model.banda" readonly hidden asp-for="banda"/>
+                    <input type="text" value="@Model.banda" readonly hidden asp-for="banda" />
 
                 </div>
 
@@ -56,16 +57,37 @@
             </form>
 
             Precio <span id="Precio">  </span>
+            <h2 id="hola"> hola </h2>
 
+            @*<script src="~/js/Compra.js"></script>
             <script>
-                var radios = document.querySelectorAll('input[type=radio][name="seccion"]');
-                radios.forEach(radio => radio.addEventListener('change', () => alert(radio.value)));
+                //var radios = document.querySelectorAll('input[type=radio][name="seccion"]');
+                //radios.forEach(radio => radio.addEventListener('change', () => alert(radio.value)));
 
-                function calcularPrecio() {
+                //function calcularPrecio() {
 
+                //}
+
+                function prueba() {
+                    alert("hola");
+                    $.ajax({
+                        url: 'Show/prueba',
+                        data: val,
+                        type: "GET",
+                        dataType: int,
+                        success: function (data) {
+                            $("#hola").val = data;
+                        },
+                        error: function () {
+
+                        }
+
+
+                    });
                 }
-            </script>
 
+
+            </script>*@
         </div>
     </div>
 </div>
