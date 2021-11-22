@@ -21,5 +21,6 @@ namespace Trabajo_VentaEntradas.BaseDato
         public DbSet<Trabajo_VentaEntradas.Models.Localidad> Localidad { get; set; }
         public DbSet<Trabajo_VentaEntradas.Models.Show> Show { get; set; }
         public DbSet<Trabajo_VentaEntradas.Models.Entrada> Entrada { get; set; }
+        public DbSet<Trabajo_VentaEntradas.Models.Banda> Banda { get; set; }
     }
 }
