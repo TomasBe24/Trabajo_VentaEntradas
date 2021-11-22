@@ -162,6 +162,7 @@ namespace Trabajo_VentaEntradas.Controllers
             ViewBag.listaEntradas = _context.Entrada.Where(m => m.dniUsuario == dni).ToArray();
             ViewBag.listaShows = _context.Show.ToArray();
             ViewBag.listaLocalidad = _context.Localidad.ToArray();
+            ViewBag.listaBandas = _context.Banda.ToArray();
             return View();
         }
 

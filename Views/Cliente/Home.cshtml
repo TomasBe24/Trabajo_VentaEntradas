@@ -26,12 +26,30 @@
                                 int i = 0;
                                 var banda = "";
                                 var idLocal = 0;
+
+                                bool encontre3 = false;
+                                int i3 = 0;
+
                                 while (!encontre)
                                 {
                                     if (@item.idShow == ViewBag.listaShows[i].id)
                                     {
-                                        banda = ViewBag.listaShows[i].banda;
                                         idLocal = ViewBag.listaShows[i].idLocalidad;
+
+                                        while (!encontre3)
+                                        {
+                                            if (ViewBag.listaShows[i].banda == ViewBag.listaBandas[i3].id)
+                                            {
+                                                banda = ViewBag.listaBandas[i].nombre;
+                                                encontre3 = true;
+
+                                            }
+                                            else
+                                            {
+                                                i3++;
+                                            }
+
+                                        }
 
                                         encontre = true;
                                     }
@@ -71,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                            
+
             }
         </div>
         <a href="~/Show/Comprar">Compra más</a>
