@@ -16,7 +16,7 @@ namespace Trabajo_VentaEntradas.Models
         [DisplayName("Fecha y hora")]
         public DateTime fecha { get; set; }
         [DisplayName("Banda")]
-        public string banda { get; set; }
+        public int banda { get; set; }
         public int precioCampo { get; set; }
         public int precioPlatea { get; set; }
         [Display(Name ="Entrada")]

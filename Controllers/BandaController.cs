@@ -149,5 +149,13 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             return _context.Banda.Any(e => e.id == id);
         }
+
+        public IActionResult Shows(int id)
+        {
+            ViewBag.Shows = _context.Show.Where(s => s.banda = id);
+
+            return View();
+        }
+
     }
 }
