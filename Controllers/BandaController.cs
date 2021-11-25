@@ -166,7 +166,7 @@ namespace Trabajo_VentaEntradas.Controllers
 
         public IActionResult Shows(int id)
         {
-            //ViewBag.Shows = _context.Show.Where(s => s.banda = id);
+            ViewBag.Shows = _context.Show.Where(s => s.banda == id).ToArray();
 
             return View();
         }
@@ -175,6 +175,10 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             return View(await _context.Banda.ToListAsync());
         }
+
+
+
+
 
     }
 }

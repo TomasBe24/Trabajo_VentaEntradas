@@ -9,7 +9,7 @@
 
 
 <h1>Shows</h1>
-
+<h2>@ViewBag.banda</h2>
 
 <table class="table">
     <thead>
@@ -37,7 +37,7 @@
                     @item.fecha
                 </td>
                 <td>
-                    @item.banda
+                    @(item.asientosPlatea + item.asientosCampo)
                 </td>
                 <td>
                     @{

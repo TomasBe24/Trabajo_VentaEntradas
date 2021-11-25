@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title">@item.nombre</h1>
-                    <a asp-area="" asp-controller="Banda" asp-action="Shows"><img id="Imagen_Banda" src="https://www.beon.com/wp-content/uploads/2017/11/Green-Day.jpg" /></a>
+                    <a asp-area="" asp-controller="Show" asp-action="Comprar" asp-route-id="@item.id"><img id="Imagen_Banda" src="@("~/imagenes/bandas/" + item.foto)" asp-append-version="true"/></a>
                 </div>
             </div>
         </div>
