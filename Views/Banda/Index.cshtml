@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.foto)
+                <img src=@("~/imagenes/bandas/" + item.foto) asp-append-version="true" height="200" width="200"/>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

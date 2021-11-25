@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +15,12 @@ namespace Trabajo_VentaEntradas.Controllers
     public class BandaController : Controller
     {
         private readonly EntradasDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public BandaController(EntradasDbContext context)
+        public BandaController(EntradasDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Banda
@@ -54,10 +58,20 @@ namespace Trabajo_VentaEntradas.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nombre,foto")] Banda banda)
+        public async Task<IActionResult> Create([Bind("id,nombre,Imagefile")] Banda banda)
         {
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(banda.Imagefile.FileName);
+                string extension = Path.GetExtension(banda.Imagefile.FileName);
+                banda.foto = fileName = fileName + extension;
+                string path = Path.Combine(wwwRootPath + "/imagenes/bandas/", fileName);
+                using(var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await banda.Imagefile.CopyToAsync(fileStream);
+                }
+
                 _context.Add(banda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
