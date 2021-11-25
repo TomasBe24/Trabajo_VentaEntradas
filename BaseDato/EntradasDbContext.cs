@@ -15,12 +15,12 @@ namespace Trabajo_VentaEntradas.BaseDato
 
         }
 
-        public DbSet<Trabajo_VentaEntradas.Models.Cliente> Cliente { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Administrador> Administrador { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Tarjeta> Tarjeta { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Localidad> Localidad { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Show> Show { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Entrada> Entrada { get; set; }
-        public DbSet<Trabajo_VentaEntradas.Models.Banda> Banda { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Administrador> Administrador { get; set; }
+        public DbSet<Tarjeta> Tarjeta { get; set; }
+        public DbSet<Localidad> Localidad { get; set; }
+        public DbSet<Show> Show { get; set; }
+        public DbSet<Entrada> Entrada { get; set; }
+        public DbSet<Banda> Banda { get; set; }
     }
 }

@@ -171,5 +171,10 @@ namespace Trabajo_VentaEntradas.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Home()
+        {
+            return View(await _context.Banda.ToListAsync());
+        }
+
     }
 }
