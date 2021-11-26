@@ -205,14 +205,14 @@ namespace Trabajo_VentaEntradas.Controllers
             return _context.Show.Any(e => e.id == id);
         }
 
-        public IActionResult Comprar(int id)
+        public async Task<IActionResult> Comprar(int id)
         {
             ViewBag.listaShows = _context.Show.Where(m => (m.asientosCampo > 0 || m.asientosPlatea > 0)  && m.banda == id/*&& m.fecha > DateTime.Now*/).ToArray();
 
             ViewBag.listaLocalidades = _context.Localidad.ToArray();
 
-
-            Banda banda = (Banda)_context.Banda.Where(b => b.id == id);
+            
+            var banda = _context.Banda.Find(id);
             ViewBag.banda = banda.nombre;
 
             return View();
