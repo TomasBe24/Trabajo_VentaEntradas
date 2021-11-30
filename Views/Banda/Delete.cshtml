@@ -21,9 +21,10 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.foto)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.foto)
+        <dd class="col-sm-10">
+            <img src=@("~/imagenes/bandas/" + Model.foto) asp-append-version="true" height="200" width="200" />
         </dd>
+        
     </dl>
     
     <form asp-action="Delete">

@@ -100,7 +100,7 @@ namespace Trabajo_VentaEntradas.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,nombre,foto")] Banda banda)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nombre,Imagefile")] Banda banda)
         {
             if (id != banda.id)
             {
@@ -111,6 +111,24 @@ namespace Trabajo_VentaEntradas.Controllers
             {
                 try
                 {
+                    if (banda.Imagefile != null) {
+                        //var fotoABorrar = await _context.Banda.FirstOrDefaultAsync(b => b.id == id);
+
+                        //var rutaImagen = Path.Combine(_hostEnvironment.WebRootPath, "imagenes/bandas", fotoABorrar.foto);
+                        //System.IO.File.Delete(rutaImagen);
+
+
+                        string wwwRootPath = _hostEnvironment.WebRootPath;
+                        string fileName = Path.GetFileNameWithoutExtension(banda.Imagefile.FileName);
+                        string extension = Path.GetExtension(banda.Imagefile.FileName);
+                        banda.foto = fileName = fileName + extension;
+                        string path = Path.Combine(wwwRootPath + "/imagenes/bandas/", fileName);
+                        using (var fileStream = new FileStream(path, FileMode.Create))
+                        {
+                            await banda.Imagefile.CopyToAsync(fileStream);
+                        }
+                    }
+
                     _context.Update(banda);
                     await _context.SaveChangesAsync();
                 }
@@ -154,7 +172,12 @@ namespace Trabajo_VentaEntradas.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var banda = await _context.Banda.FindAsync(id);
+
+            var rutaImagen = Path.Combine(_hostEnvironment.WebRootPath, "imagenes/bandas", banda.foto);
+            System.IO.File.Delete(rutaImagen);
+
             _context.Banda.Remove(banda);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
