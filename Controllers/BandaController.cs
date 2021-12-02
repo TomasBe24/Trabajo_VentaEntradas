@@ -173,8 +173,11 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             var banda = await _context.Banda.FindAsync(id);
 
+            if (banda.foto != null)
+            {
             var rutaImagen = Path.Combine(_hostEnvironment.WebRootPath, "imagenes/bandas", banda.foto);
             System.IO.File.Delete(rutaImagen);
+            }
 
             _context.Banda.Remove(banda);
 

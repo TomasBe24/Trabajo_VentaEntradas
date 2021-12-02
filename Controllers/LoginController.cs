@@ -79,15 +79,16 @@ namespace Trabajo_VentaEntradas.Controllers
                     //if (!string.IsNullOrWhiteSpace(returnUrl))
                     //    return Redirect(returnUrl);
 
-                    if (rol == Rol.Cliente)
-                    {
-                        return RedirectToAction("Home", "Cliente");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    //if (rol == Rol.Cliente)
+                    //{
+                    //    return RedirectToAction("Home", "Cliente");
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
 
+                    return Redirect((string)TempData[_Return_Url]);
 
                 }
             }

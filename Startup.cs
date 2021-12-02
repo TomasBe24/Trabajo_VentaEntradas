@@ -65,7 +65,7 @@ namespace Trabajo_VentaEntradas
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Login}/{action=Login}/{id?}");
+                    pattern: "{controller=Banda}/{action=Home}/{id?}");
             });
             app.UseCookiePolicy();
         }
