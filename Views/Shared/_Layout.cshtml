@@ -68,6 +68,13 @@
                             <h4>Localidades</h4>
                         </div>
                     </a>
+
+                    <a asp-area="" asp-controller="Banda" asp-action="Index">
+                        <div class="option">
+                            <i class="icon-star-empty" title="Bandas"></i>
+                            <h4>Bandas</h4>
+                        </div>
+                    </a>
                 }
                 else
                 {
@@ -85,11 +92,31 @@
                         </div>
                     </a>
                 }
+
+
+
             </div>
 
         </div>
-    }
+            }
+            else {
 
+<header>
+    <div class="icon__menu">
+        <i class="fas fa-bars" id="btn_open"></i>
+    </div>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+        <div class="container navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <ul class="navbar-nav flex-grow-1">
+                <li>
+                    <a class="nav-link text-warning" asp-area="" asp-controller="Login" asp-action="Login">Ingresar</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+           }
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

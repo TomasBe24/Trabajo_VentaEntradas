@@ -76,20 +76,16 @@ namespace Trabajo_VentaEntradas.Controllers
 
                     TempData["LoggedIn"] = true;
 
-                    //if (!string.IsNullOrWhiteSpace(returnUrl))
-                    //    return Redirect(returnUrl);
-
-                    //if (rol == Rol.Cliente)
-                    //{
-                    //    return RedirectToAction("Home", "Cliente");
-                    //}
-                    //else
-                    //{
-                    //    return RedirectToAction("Index", "Home");
-                    //}
-
-                    return Redirect((string)TempData[_Return_Url]);
-
+                    if (TempData[_Return_Url] != null)
+                    {
+                        return Redirect((string)TempData[_Return_Url]);
+                    }else if (rol == Rol.Administrador)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }else
+                    {
+                        return RedirectToAction("Home", "Cliente");
+                    }
                 }
             }
 
@@ -106,7 +102,7 @@ namespace Trabajo_VentaEntradas.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Home", "Banda");
         }
 
         [Authorize]
