@@ -43,9 +43,30 @@
             <td>
                 @Html.DisplayFor(modelItem => item.fecha)
             </td>
-            <td>
+
+            @{
+                bool encontre1 = false;
+                int j = 0;
+                var banda = "";
+                while (!encontre1)
+                {
+                    if (@item.banda == ViewBag.listaBandas[j].id)
+                    {
+                        banda = ViewBag.listaBandas[j].nombre;
+                        encontre1 = true;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+
+            }
+            <td>@banda</td>
+
+            @*<td>
                 @Html.DisplayFor(modelItem => item.banda)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.precioCampo)
             </td>

@@ -27,6 +27,7 @@ namespace Trabajo_VentaEntradas.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.listaLocalidades = _context.Localidad.ToArray();
+            ViewBag.listaBandas = _context.Banda.ToArray();
             return View(await _context.Show.ToListAsync());
         }
 
@@ -47,6 +48,11 @@ namespace Trabajo_VentaEntradas.Controllers
             //show.idLocalidad
             var nombreLocalidad = await _context.Localidad.FirstOrDefaultAsync(m => m.id == show.idLocalidad); //Where(m => m.id == show.idLocalidad);
             ViewBag.nombre = nombreLocalidad.nombre;
+
+            var nombreBanda = await _context.Banda.FirstOrDefaultAsync(m => m.id == show.banda); //Where(m => m.id == show.idLocalidad);
+            ViewBag.nombreBanda = nombreBanda.nombre;
+
+
             return View(show);
         }
 
@@ -67,6 +73,21 @@ namespace Trabajo_VentaEntradas.Controllers
             });
 
             ViewBag.Items = items;
+
+            List<Banda> lstBanda = _context.Banda.ToList();
+
+            List<SelectListItem> itemsBanda = lstBanda.ConvertAll(m =>
+            {
+                return new SelectListItem()
+                {
+                    Text = m.nombre.ToString(),
+                    Value = m.id.ToString(),
+                    Selected = false //aca esta el tuco
+                };
+            });
+
+            ViewBag.ItemsBanda = itemsBanda;
+
 
             return View();
         }
@@ -131,6 +152,40 @@ namespace Trabajo_VentaEntradas.Controllers
 
 
             ViewBag.Items = items;
+
+
+            List<Banda> lstBanda = _context.Banda.ToList();
+
+            List<SelectListItem> itemsBanda = lstBanda.ConvertAll(m =>
+            {
+                return new SelectListItem()
+                {
+                    Text = m.nombre.ToString(),
+                    Value = m.id.ToString(),
+                    Selected = false //aca esta el tuco
+                };
+            });
+
+            int j = 0;
+            bool encontre1 = false;
+            while (j < itemsBanda.Count && !encontre1)
+            {
+                if (itemsBanda[j].Value == show.banda.ToString())
+                {
+                    itemsBanda[j].Selected = true;
+                    encontre1 = true;
+                }
+                else
+                {
+                    j++;
+                }
+            }
+
+
+            ViewBag.ItemsBanda = itemsBanda;
+
+
+
 
 
             return View(show);
@@ -228,7 +283,7 @@ namespace Trabajo_VentaEntradas.Controllers
 
             modelo.idShow = show.id;
             modelo.fecha = show.fecha;
-            //modelo.banda = show.banda;
+            modelo.banda = _context.Banda.FirstOrDefault(m => m.id == show.banda).nombre;
             modelo.asientosCampo = show.asientosCampo;
             modelo.asientosPlatea = show.asientosPlatea;
             modelo.precioCampo = show.precioCampo;
